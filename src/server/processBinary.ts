@@ -13,9 +13,7 @@ export function processBinary(
   );
 
   const data = Array.from({ length: binaryDimensionY }, (_, y) =>
-    Array.from({ length: binaryDimensionX }, (_, x) =>
-      buffer.readUInt8(y * binaryDimensionX + x)
-    )
+    Array.from({ length: binaryDimensionX }, (_, x) => buffer.readUInt8(y * binaryDimensionX + x))
   );
 
   for (let y = 0; y < temperatures.length; y++) {

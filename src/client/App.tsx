@@ -35,7 +35,7 @@ const App: React.FC = () => {
 
   const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     if (imageSrc != '/empty-map.jpg') {
-      setImageSrc("/empty-map.jpg");
+      setImageSrc('/empty-map.jpg');
     }
 
     const file = event.target.files?.[0];
@@ -70,14 +70,8 @@ const App: React.FC = () => {
     <div style={containerStyle}>
       <h1 style={titleStyle}>Sea Surface Temperature Map</h1>
       {inProgress && <p style={processingMessageStyle}>Processing...</p>}
-      <input
-        type="file"
-        onChange={handleFileUpload}
-        style={uploadButtonStyle}
-      />
-      <div>
-        {imageSrc && <img style={temperatureMapStyle} src={imageSrc} alt="Heatmap" />}
-      </div>
+      <input type='file' onChange={handleFileUpload} style={uploadButtonStyle} />
+      <div>{imageSrc && <img style={temperatureMapStyle} src={imageSrc} alt='Heatmap' />}</div>
     </div>
   );
 };

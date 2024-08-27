@@ -10,6 +10,7 @@
     "build:backend": "tsc",
     "build": "pnpm run build:frontend && pnpm run build:backend",
     "dev": "concurrently \"tsc -w\" \"vite\" ",
+    "dev:backend": "node --max-old-space-size=8192 dist/server/server.js",
     "test": "mocha -r ts-node/register 'src/**/*.test.js'",
     "lint": "eslint src/**/*.{ts,tsx}",
     "format": "prettier --write 'src/**/*.{ts,tsx}'"
