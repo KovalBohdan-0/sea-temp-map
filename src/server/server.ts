@@ -22,7 +22,7 @@ app.post('/api/upload', upload.single('file'), async (req, res) => {
   console.log('File uploaded');
   await unzipFile(req.file.path, './public/extracted');
   console.log('File uploaded and extracted');
-  const temperatures = processBinary('./public/extracted/sst.grid');
+  const temperatures = processBinary('./public/extracted/sst.grid', 36000, 17999);
   console.log('Binary processed');
   await generateHeatMap(temperatures, './public/empty-map.jpg', './public/output-map.png');
   res.sendFile('./public/output-map.png', { root: '.' });

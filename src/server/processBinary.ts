@@ -1,28 +1,29 @@
 import fs from 'fs';
 
-const BINARY_DIMENSION_X = 36000;
-const BINARY_DIMENSION_Y = 17999;
 const BINARY_SCALE = 10;
 
-export function processBinary(filePath: string): number[][] {
+export function processBinary(
+  filePath: string,
+  binaryDimensionX: number,
+  binaryDimensionY: number
+): number[][] {
   const buffer = fs.readFileSync(filePath);
-  const temperatures: number[][] = Array.from({ length: BINARY_DIMENSION_Y / BINARY_SCALE }, () =>
-    Array(BINARY_DIMENSION_X / BINARY_SCALE).fill(0)
+  const temperatures: number[][] = Array.from({ length: binaryDimensionY / BINARY_SCALE }, () =>
+    Array(binaryDimensionX / BINARY_SCALE).fill(0)
   );
 
-  const data = Array.from({ length: BINARY_DIMENSION_Y }, (_, y) =>
-    Array.from({ length: BINARY_DIMENSION_X }, (_, x) =>
-      buffer.readUInt8(y * BINARY_DIMENSION_X + x)
+  const data = Array.from({ length: binaryDimensionY }, (_, y) =>
+    Array.from({ length: binaryDimensionX }, (_, x) =>
+      buffer.readUInt8(y * binaryDimensionX + x)
     )
   );
 
   for (let y = 0; y < temperatures.length; y++) {
     for (let x = 0; x < temperatures[0].length; x++) {
-      const flippedX = BINARY_DIMENSION_X / BINARY_SCALE - 1 - x;
+      const flippedX = binaryDimensionX / BINARY_SCALE - 1 - x;
 
       temperatures[y][x] = computeAverage(flippedX * BINARY_SCALE, y * BINARY_SCALE, data);
     }
-    console.log(y);
   }
 
   return temperatures;

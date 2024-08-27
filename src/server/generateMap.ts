@@ -50,17 +50,17 @@ function getColorForTemperature(temp: number): string {
 }
 
 function lerpColor(color1: string, color2: string, t: number) {
-  let r1 = parseInt(color1.substring(1, 3), 16);
-  let g1 = parseInt(color1.substring(3, 5), 16);
-  let b1 = parseInt(color1.substring(5, 7), 16);
+  const r1 = parseInt(color1.substring(1, 3), 16);
+  const g1 = parseInt(color1.substring(3, 5), 16);
+  const b1 = parseInt(color1.substring(5, 7), 16);
 
-  let r2 = parseInt(color2.substring(1, 3), 16);
-  let g2 = parseInt(color2.substring(3, 5), 16);
-  let b2 = parseInt(color2.substring(5, 7), 16);
+  const r2 = parseInt(color2.substring(1, 3), 16);
+  const g2 = parseInt(color2.substring(3, 5), 16);
+  const b2 = parseInt(color2.substring(5, 7), 16);
 
-  let r = Math.round(r1 + t * (r2 - r1));
-  let g = Math.round(g1 + t * (g2 - g1));
-  let b = Math.round(b1 + t * (b2 - b1));
+  const r = Math.round(r1 + t * (r2 - r1));
+  const g = Math.round(g1 + t * (g2 - g1));
+  const b = Math.round(b1 + t * (b2 - b1));
 
   return `rgb(${r}, ${g}, ${b})`;
 }
